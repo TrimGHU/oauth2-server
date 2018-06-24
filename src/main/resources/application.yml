@@ -1,0 +1,41 @@
+server:
+  port: '9090'
+spring:
+  application:
+    name: oauth2-server
+  redis:
+    host: 127.0.0.1
+    password: 12345
+    database: 8
+    pool:
+      max-idle: 6
+      max-wait: 2000
+      max-active: 10
+    port: '6379'
+    timeout: '3000'
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/auth
+    username: root
+    password: 1234
+    
+mybatis-plus:
+  mapper-locations: classpath:/com/hugui/oauth/mapper/xml/*Mapper.xml
+  typeAliasesPackage: com.hugui.oauth.entity
+  
+logging:
+  level:
+    Root:
+      INFO
+    org.springframework.cache: 
+      DEBUG
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+      
+security:
+  oauth2:
+    resource:
+      filter-order: 3
